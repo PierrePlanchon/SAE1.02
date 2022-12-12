@@ -12,22 +12,24 @@ class AlphaChevaux extends Program{
     void algorithm(){
         String[][] plateau = new String[15][15];
         init(plateau);
-        println(ANSI_RED+ANSI_BLINK_SLOW+"rouge"); //faire clignoter joueur
-        println(ANSI_RESET);
         plateau[6][0] = J1_COLOR + " 0 ";
-        //afficherPlateau(plateau);
-        //println(ANSI_RESET);
 
         int[][] cheminBleu = new int[][]{{6,0},{6,1},{6,2},{6,3},{6,4},{6,5},{6,6},{5,6},{4,6},{3,6},{2,6},{1,6},{0,6},
                                         {0,7},{0,8},{1,8},{2,8},{3,8},{4,8},{5,8},{6,8},{6,9},{6,10},{6,11},{6,12},{6,13},{6,14},
                                         {7,14},{8,14},{8,13},{8,12},{8,11},{8,10},{8,9},{8,8},{9,8},{10,8},{11,8},{12,8},{13,8},{14,8},
                                         {14,7},{14,6},{13,6},{12,6},{11,6},{10,6},{9,6},{8,6},{8,5},{8,4},{8,3},{8,2},{8,1},{8,0},{7,0}};
+
+        int[][] cheminJaune = new int[][]{{0,8},{1,8},{2,8},{3,8},{4,8},{5,8},{6,8},{6,9},{6,10},{6,11},{6,12},{6,13},{6,14},
+                                        {7,14},{8,14},{8,13},{8,12},{8,11},{8,10},{8,9},{8,8},{9,8},{10,8},{11,8},{12,8},{13,8},{14,8},
+                                        {14,7},{14,6},{13,6},{12,6},{11,6},{10,6},{9,6},{8,6},{8,5},{8,4},{8,3},{8,2},{8,1},{8,0},{7,0}
+                                        };
         int idxBleu = 0;
-        //int posBleu = cheminBleu[idxBleu];
-        //type cheval : couleur et position
-        //savoir ligne ou colonne
         boolean tour = false;
+        
+        int joueur = 1;
         while (!tour){
+            println(ANSI_RED+ANSI_BLINK_SLOW+"JOUEUR"+joueur);
+            println(ANSI_RESET);
             afficherPlateau(plateau);
             println(ANSI_RESET);
             int cases = lancé1();
@@ -38,16 +40,20 @@ class AlphaChevaux extends Program{
             print(table+" x "+multi+" = ");
             int reponse = readInt();
             if (table*multi == reponse){
-                println("Bonne réponse ! Vous avancez de "+"2"+" cases !");
+                println("Bonne réponse ! Vous avancez de "+cases+" cases !");
                 plateau[cheminBleu[idxBleu][0]][cheminBleu[idxBleu][1]] = ANSI_RESET+CASE;
                 idxBleu = idxBleu + cases;
-                //posBleu = cheminBleu[idxBleu];
                 plateau[cheminBleu[idxBleu][0]][cheminBleu[idxBleu][1]] = J1_COLOR+" 0 "+ANSI_RESET;
                 if (idxBleu == length(cheminBleu)-1){
                     tour=true;
                 }
             }else {
                 println("Mauvaise réponse... Vous n'avancez que de "+cases/2+" cases...");
+            }
+            if (joueur<4){
+                joueur++;
+            }else {
+                joueur = 1;
             }
         }
         afficherPlateau(plateau);
@@ -111,13 +117,20 @@ class AlphaChevaux extends Program{
         return (int)(random()*6) + 1;
     }
 
-    int lancé2(){
+    int lancé2(){ Cheval newCheval(int ligne, int colonne, String couleur){
+        Cheval p;
+        p.ligne = ligne;
+        p.colonne = colonne;
+        p.couleur = couleur;
+    }
+}
         return (int)(random()*10) + 1;
     }
 
     ////////// 
-}
 
+   
+}
 
 /*
 règles : 
@@ -129,4 +142,9 @@ tour à tour : fonctions J1, J2, J3, J4
 while (J1){
     ligne 10
 }
+
+
+creer un type Chemins
+gerer le tour par tour et changement de joueur
+gerer la fin d'un tour (ne depasse pas les limites du chemins)
 */
