@@ -1,0 +1,1 @@
+enum Joueur{ BLEU, JAUNE, ROUGE, VERT}
