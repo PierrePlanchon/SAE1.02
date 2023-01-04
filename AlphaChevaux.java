@@ -12,8 +12,8 @@ class AlphaChevaux extends Program{
     void algorithm(){
 
         String[][] plateau = new String[15][15];
-        String basic_case = "( )";
-        String case_mid = "[ ]";
+        String basic_case = CASE;
+        String case_mid = CASE_MID;
         init(plateau);
 
         Cheval bleu1 = creerCheval(6,0,J1_COLOR," 1 ");
@@ -68,22 +68,29 @@ class AlphaChevaux extends Program{
             int multi = lancé2();  //dé3
             println("Vous jouez pour avancer de "+cases+" cases !");
             println("table de : "+table);
-            print(table+" x "+multi+" = ");
-            int reponse = readInt();
+            
 
+            String saisie;
+            do {
+                print(table+" x "+multi+" = ");
+                saisie = readString();
+            }while(!estNombre(saisie));
+
+            int reponse = stringToInt(saisie);
+            
             boolean rep = (table*multi == reponse);
             if (joueur==1){
                 couleur = J1_COLOR;
-                idxBleu = deplacer(plateau,  cheminBleu, idxBleu, cases, rep, bleu1, basic_case);
+                idxBleu = deplacer(plateau,  cheminBleu, idxBleu, cases, rep, bleu1, CASE);
             }else if (joueur==2){
                 couleur = J2_COLOR;
-                idxJaune = deplacer(plateau,  cheminJaune, idxJaune, cases, rep, jaune1, basic_case);
+                idxJaune = deplacer(plateau,  cheminJaune, idxJaune, cases, rep, jaune1, CASE);
             }else if (joueur==3){
                 couleur = J3_COLOR;
-                idxRouge = deplacer(plateau,  cheminRouge, idxRouge, cases, rep, rouge1, basic_case);
+                idxRouge = deplacer(plateau,  cheminRouge, idxRouge, cases, rep, rouge1, CASE);
             }else{
                 couleur = J4_COLOR;
-                idxVert = deplacer(plateau,  cheminVert, idxVert, cases, rep, vert1, basic_case);
+                idxVert = deplacer(plateau,  cheminVert, idxVert, cases, rep, vert1, CASE);
             }
             
             ////////////////////// ---> creer fonction deplacements_interieurs 
@@ -128,6 +135,34 @@ class AlphaChevaux extends Program{
         
     }
 
+    ////////// deplacements intérieurs /////////
+
+    int[][] deplacements_interieurs(int[][] chemin, int[][] interieur, int position){
+        int[][] temp = chemin;
+        if (position == length(temp)-1){
+            chemin = interieur;
+            position = 0;
+        }
+        return chemin;
+    }
+
+    ////////// gestion saisie /////////
+
+    boolean estNombre(String reponse){
+        char chiffre;
+        for (int idx=0; idx<length(reponse); idx++){
+            chiffre = charAt(reponse, idx);
+            if (chiffre<'0' || chiffre>'9'){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void testEstNombre(){
+        assertEquals(true, estNombre("90"));
+        assertEquals(false, estNombre("."));
+    }
 
     ////////// initialisation du plateau //////////
 
@@ -222,6 +257,8 @@ class AlphaChevaux extends Program{
         horse.pion = pion;
         return horse;
     }
+
+    
 }
 
 /*
@@ -237,5 +274,7 @@ dans deplacer() ajouter le type Cheval, tout gerer avec le type cheval !! ---> O
 chevaux "1" et "2" ---> en cours
 clignotant de la bonne couleur ---> à faire
 gerer les pions mangés !! --- à faire
-creer foncton deplacements_interieurs ---> à faire
+creer foncton deplacements_interieurs ---> en cours /!\
+gérer la sauvegarde d'une partie ---> à faire
+gérer la saisie (que des nombres) ---> OK
 */
