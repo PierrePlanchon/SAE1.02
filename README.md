@@ -12,7 +12,7 @@ Contacts : pierre.planchon.etu@univ-lille.fr, rafael.piral.etu@univ-lille.fr
 
 	Le jeu se joue à 4 joueurs et chaque joueur dispose de 2 pions.
 	
-# [Déroulement]
+[Déroulement]
 
 #1.Début de Partie.
 
