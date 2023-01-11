@@ -34,7 +34,7 @@ Des captures d'écran illustrant le fonctionnement du logiciel sont proposées d
 
 # Utilisation de AlphaChevaux
 
-Afin d'utiliser le projet, il suffit de taper les commandes suivantes dans un terminal en se placant de le repertoire ./ArchiveExemple
+Afin d'utiliser le projet, il suffit de taper les commandes suivantes dans un terminal en se placant de le repertoire ./ArchiveExemple  
 
 ```
 ./compile.sh
@@ -44,16 +44,4 @@ Permet la compilation des fichiers présents dans 'src' et création des fichier
 ```
 ./run.sh AlphaChevaux
 ```
-Permet le lancement du jeu
-
-
-
-# A venir
-creer un type Chemins ?
-gerer la fin d'un tour (ne depasse pas les limites du chemins) ---> en cours
-dans deplacer() ajouter le type Cheval, tout gerer avec le type cheval !! ---> OK
-chevaux "1" et "2" ---> en cours
-clignotant de la bonne couleur ---> à faire
-gerer les pions mangés !! --- à faire
-creer foncton deplacements_interieurs ---> à faire
-gérer la sauvegarde d'une partie ---> à faire
+Permet le lancement du jeu.
