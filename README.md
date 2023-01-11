@@ -8,7 +8,7 @@ Contacts : pierre.planchon.etu@univ-lille.fr, rafael.piral.etu@univ-lille.fr
   Alpha Chevaux est un logiciel ludo-pédagogique visant des élèves de primaire afin de leur permettre d'apprendre les tables de multiplications tout en s'amusant. Le jeu se joue avec des pions et 2 dés (6 et   10 faces). 
   Le but du jeu est de faire avancer ses pions autour d’un plateau de jeu jusqu’à ce qu’ils se placent devant la case centrale du plateau en répondant à des multiplications pour avancer.
   
-#Règles
+#  Règles
 
 	Le jeu se joue à 4 joueurs et chaque joueur dispose de 2 pions.
 	
